@@ -1,0 +1,29 @@
+{
+  "name": "us-early-appointment-schedule-notifier",
+  "version": "1.0.0",
+  "description": "This is simply notify  script  to check  early appointment schedule  and if find  any early date  then  notify via email.",
+  "main": "src/index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manojmoktandev/US-early-appointment-schedule-notifier.git"
+  },
+  "keywords": [
+    "US",
+    "VISA",
+    "EARLY",
+    "APPOINTMENT",
+    "DATE"
+  ],
+  "author": "Manoj Moktan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manojmoktandev/US-early-appointment-schedule-notifier/issues"
+  },
+  "homepage": "https://github.com/manojmoktandev/US-early-appointment-schedule-notifier#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

@@ -4,7 +4,9 @@
   "description": "This is simply notify  script  to check  early appointment schedule  and if find  any early date  then  notify via email.",
   "main": "src/index",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": " nodemon src/index.js",
+    "start": "pm2 start ecosystem.config.js --no-daemon"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,15 @@
   },
   "homepage": "https://github.com/manojmoktandev/US-early-appointment-schedule-notifier#readme",
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "date-fns": "^3.3.1",
+    "dotenv": "^16.4.5",
+    "form-data": "^4.0.0",
+    "logger": "0.0.1",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.10",
+    "pm2": "^5.3.1",
+    "puppeteer": "^16.2.0",
+    "puppeteer-core": "^22.3.0",
+    "winston": "^3.11.0"
   }
 }

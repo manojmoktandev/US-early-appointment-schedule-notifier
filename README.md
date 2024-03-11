@@ -28,7 +28,6 @@ info: =====>>> Step: sending an email to schedule for 2023-02-08
 ...
 ```
 
-![email notification sample](./)
 
 
 ## How it works

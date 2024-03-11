@@ -64,8 +64,8 @@ You can create SMTP configurations
 
 ## FAQ
 
-* How do I get my facility ID - 
-* How do I get my schedule ID - 
+* How do I get my facility ID - src/config.js
+* How do I get my schedule ID - .env 
 
 ## How to use it
 

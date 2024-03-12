@@ -1,11 +1,19 @@
+name: Github Action
+
 on: push
+
 jobs: 
-    build-node:
+    build:
         runs-on: ubuntu-latest
-        container: node:16
+
         steps:
-            - run: node --version
-            - run: npm --version
-            - uses: actions/checkout@v4
-            - run: npm install
-            - run: npm run start 
+          - uses: actions/checkout@v3 # checkout the repository
+          - name: Use Node
+            uses: actions/setup-node@v3
+            with:
+                node-version: v14.20.1
+          - name: Install Dependencies
+            run: npm install
+          - name: Run App
+            run: npm run start
+        

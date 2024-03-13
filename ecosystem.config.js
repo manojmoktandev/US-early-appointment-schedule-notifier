@@ -7,7 +7,7 @@ module.exports = {
         "watch": true,
         "time": false,
         "env": {
-            "NODE_ENV": "development"
+            "NODE_ENV": "prod"
         },
         "env_production": {
             "NODE_ENV": "prod"

@@ -7,7 +7,7 @@ const {parseISO, compareAsc, isBefore, format} = require('date-fns');
 
 cron.schedule('*/15 * * * *', () => {
     const currentDate = format(new Date(), "yyyy-MM-dd H:m");
-    console.log(`Running a job at every 5 minutes ${currentDate}`);
+    console.log(`Running a job at every 15 minutes ${currentDate}`);
     
     async () => {
         const browser = await puppeteer.launch(!IS_PROD ? {headless: false}: undefined);

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "This is simply notify  script  to check  early appointment schedule  and if find  any early date  then  notify via email.",
   "main": "src/index",
+  "engines": {
+    "node": "14.20.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": " nodemon src/index.js",

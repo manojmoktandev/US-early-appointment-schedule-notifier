@@ -5,9 +5,9 @@ const {scheduleProcess} = require('./../utils/appointment');
 const {IS_PROD} = require('./../config/config');
 const {parseISO, compareAsc, isBefore, format} = require('date-fns');
 
-cron.schedule('*/15 * * * *', () => {
+cron.schedule('0 * * * *', () => {
     const currentDate = format(new Date(), "yyyy-MM-dd H:m");
-    console.log(`Running a job at every 15 minutes ${currentDate}`);
+    console.log(`Running a job at every Hour ${currentDate}`);
     
     async () => {
         const browser = await puppeteer.launch(!IS_PROD ? {headless: false}: undefined);
@@ -18,5 +18,7 @@ cron.schedule('*/15 * * * *', () => {
         }
         //await browser.close();
       };
- });
-
+ },{
+  scheduled: true,
+  timezone: "America/New_York"
+});

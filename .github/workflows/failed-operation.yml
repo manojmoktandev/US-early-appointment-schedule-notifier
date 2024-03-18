@@ -1,0 +1,32 @@
+name: Notify on Failed Operation
+
+on:
+  workflow_run:
+    workflows: ["Your Workflow Name"]  # Replace "Your Workflow Name" with the name of your workflow
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    if: github.event.workflow_run.conclusion == 'failure'
+
+    steps:
+      - name: Send notification
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const runId = ${{ github.event.workflow_run.id }};
+            const repo = ${{ github.event.repository.full_name }};
+            const owner = repo.split('/')[0];
+            const issueBody = `The workflow run for "${repo}" with ID ${runId} has failed. Please check the workflow run for more details.`;
+            const issueTitle = `Workflow run failed for "${repo}"`;
+            const octokit = github.getOctokit('${{ secrets.GITHUB_TOKEN }}');
+            await octokit.issues.create({
+              owner: owner,
+              repo: repo.split('/')[1],
+              title: issueTitle,
+              body: issueBody
+            });

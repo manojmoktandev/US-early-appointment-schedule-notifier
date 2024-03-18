@@ -16,5 +16,8 @@ jobs:
             run: npm install
           - name: Run App
             run: npm run start
+          - name: Handle failure
+            if: failure()
+            run: npm restart
         
         

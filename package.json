@@ -2,14 +2,15 @@
   "name": "us-early-appointment-schedule-notifier",
   "version": "1.0.0",
   "description": "This is simply notify  script  to check  early appointment schedule  and if find  any early date  then  notify via email.",
-  "main": "src/index",
+  "main": "src/app",
   "engines": {
-    "node": "14.20.1"
+    "node": "19.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": " nodemon src/index.js",
-    "start": "node src/cron/cronjob.js"
+    "dev": " nodemon src/app.js",
+    "start": "pm2 start ecosystem.config.js --no-daemon",
+    "start-cron": "node src/cron/cronjob.js"
   },
   "@scripts-comments":{
     "start": "pm2 start ecosystem.config.js --no-daemon"

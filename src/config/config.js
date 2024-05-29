@@ -40,6 +40,7 @@ module.exports = {
     MAX_NUMBER_OF_POLL: process.env.MAX_NUMBER_OF_POLL || 250, // number of polls before stopping
     NOTIFY_ON_DATE_BEFORE: process.env.NOTIFY_ON_DATE_BEFORE || notifyDateBefore, // in ISO form-at i.e YYYY-MM-DD
     SITE_ADMIN_NAME : 'MANOJ MOKTAN',
+    PORT:process.env.PORT || 8000,
   
     NOTIFY_EMAILS: process.env.NOTIFY_EMAILS, // comma separated list of emails
     mailSmtp:{

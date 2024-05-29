@@ -1,0 +1,44 @@
+<%- include("partials/header") %>
+    
+	<section class="hero" id="home">
+        <div><h1>Available Nearest Dates</h1></div>
+            <form method="GET" action="/available-dates">
+                <div class="form-group" > 
+                <input type="text" name="filter" value="<%= filter %>" placeholder="Filter by city or Available Dates">
+                <button type="submit">Filter</button>
+                </div>
+
+            </form>
+       
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>City</th>
+                    <th>Available Dates</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(data.length==0){ %>
+                    <tr >
+                        <td colspan = 3 class="align-center"> No Appointment Dates Found.</td>
+                    </tr>
+                <% } else { %>
+                <% 
+                    data.forEach((item, index) => { %>
+                    <tr>
+                        <td><%= index+1  %></td>
+                        <td><%= item.name %></td>
+                        <td><%= item.date %></td>
+                    </tr>
+                <% }) } %>
+            </tbody>
+        </table>
+    </section>
+
+
+    <%- include("partials/footer") %>
+</body>
+</html>
+

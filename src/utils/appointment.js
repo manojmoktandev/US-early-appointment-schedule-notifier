@@ -3,12 +3,18 @@ const {delay,loggerStep} = require('./utils');
 const {login} = require('./auth');
 const {parseISO, compareAsc, isBefore, format} = require('date-fns');
 const {emailNotifierBody} =  require('./../template/notifier');
+const fs = require('fs');
+const path = require('path');
 
 const {siteInfo, loginCred,SITE_ADMIN_NAME, NEXT_SCHEDULE_POLL, MAX_NUMBER_OF_POLL, NOTIFY_ON_DATE_BEFORE} = require('./../config/config');
 const {sendEmail} = require('./email');
 
 let isLoggedIn = false;
 let maxTries = MAX_NUMBER_OF_POLL;
+
+// Path to the JSON file
+const dataFilePath = path.join(__dirname, 'data.json');
+
 
 
 const getScheduleAppointmentUrl = (siteInfo,facility_id)=>{
@@ -31,7 +37,7 @@ const checkForSchedules = async (page,scheduleAppointmentUrl,facility_name) => {
     });
   
     try{
-      const parsedBody =  JSON.parse(bodyText);
+      const parsedBody =  !bodyText?[]:JSON.parse(bodyText);
       if(parsedBody.length>0){
         loggerStep(`Here is the date available  at facility ${facility_name}`,bodyText);
         loggerStep(`Parse Body : `,bodyText);
@@ -76,6 +82,7 @@ const scheduleProcess = async (browser) => {
       if(earliestDate && isBefore(earliestDate, parseISO(NOTIFY_ON_DATE_BEFORE))){
         logger.info(`There is earliest date Found in Facility at  ${siteInfo.FACILITY_IDS[facility_id]}: ${earliestDate}`);
         await notifyMe(earliestDate);
+        addAvailableLatestDates(facility_name,earliestDate);
       }
       await delay(NEXT_SCHEDULE_POLL)
       await scheduleProcess(browser)
@@ -92,6 +99,22 @@ const notifyMe = async (earliestDate) => {
       html: emailNotifierBody(appicantName,formattedDate,siteAdminName)
     })
 }
+
+const addAvailableLatestDates = (facility_name,earliestDate)=>{
+  const readDataFrom = readDataFromFile();
+  readDataFrom.push( {'name':facility_name,'date':earliestDate});
+  fs.writeFileSync(dataFilePath,JSON.stringify(readDataFrom,null,2));
+}
+
+// Function to read data from the JSON file
+const readDataFromFile = () => {
+  if (!fs.existsSync(dataFilePath)) {
+      return [];
+  }
+  const fileData = fs.readFileSync(dataFilePath);
+  return JSON.parse(fileData);
+};
+
 module.exports = {
     scheduleProcess
 }

@@ -8,11 +8,12 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": " nodemon src/app.js",
+    "dev": "node src/app.js",
+    "start-test": "",
     "start": "pm2 start ecosystem.config.js --no-daemon",
     "start-cron": "node src/cron/cronjob.js"
   },
-  "@scripts-comments":{
+  "@scripts-comments": {
     "start": "pm2 start ecosystem.config.js --no-daemon"
   },
   "repository": {
@@ -35,6 +36,10 @@
   "dependencies": {
     "date-fns": "^3.3.1",
     "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-ejs-layouts": "^2.5.1",
+    "fs": "^0.0.1-security",
     "logger": "0.0.1",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.10",
